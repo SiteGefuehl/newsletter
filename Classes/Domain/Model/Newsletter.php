@@ -684,8 +684,10 @@ class Tx_Newsletter_Domain_Model_Newsletter extends Tx_Extbase_DomainObject_Abst
 		// We cannot use extbase because __clone() doesn't work and even if we clone manually the PID cannot be set
 		global $TYPO3_DB;
 		$TYPO3_DB->sql_query("INSERT tx_newsletter_domain_model_newsletter
-		SELECT null AS uid, pid, '$newPlannedTime' AS planned_time, 0 AS begin_time, 0 AS end_time, repetition, plain_converter, is_test, attachments, sender_name, sender_email, inject_open_spy, inject_links_spy, bounce_account, recipient_list, " . time() . " AS tstamp, " . time() . " AS crdate, deleted, hidden
-		FROM tx_newsletter_domain_model_newsletter WHERE uid = " . $this->getUid());
+		SELECT null AS uid, pid, '$newPlannedTime' AS planned_time, 0 AS begin_time, 0 AS end_time, recipient_list, 
+		is_test, repetition, sender_name, sender_email, plain_converter, attachments, inject_open_spy, 
+		inject_links_spy, bounce_account, " . time() . " AS tstamp, " . time() . " AS crdate, deleted, 
+		hidden FROM tx_newsletter_domain_model_newsletter WHERE uid = " . $this->getUid());
 	}
 
 	/**
